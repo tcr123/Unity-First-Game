@@ -8,19 +8,21 @@ public class PlayerMovement : MonoBehaviour
     public float SidewaySpeed = 200f;
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         rb.AddForce(0, 0, MovementSpeed * Time.deltaTime);
 
-        if (Input.GetKey("d"))
-            rb.AddForce(SidewaySpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-
-        if (Input.GetKey("a"))
-            rb.AddForce(-SidewaySpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-
-        if (rb.position.y < -2f)
+        float horizontalInput = Input.GetAxis("Horizontal");
+        
+        if (horizontalInput != 0)
         {
-            FindObjectOfType<GameManager>().EndGame();
+            rb.position = rb.position + new Vector3(SidewaySpeed * Time.deltaTime * horizontalInput, 0, 0);
+
+            if (rb.position.x < -7.6f)
+                rb.position = new Vector3(-7.6f, rb.position.y, rb.position.z);
+            
+            if (rb.position.x > 10f)
+                rb.position = new Vector3(10f, rb.position.y, rb.position.z);
         }
     }
 }
