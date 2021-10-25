@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameObjectUI;
 
+    // the game lose and restart
     public void EndGame()
     {
         if (GameHasEnded == false)
@@ -18,13 +19,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // the game win 
     public void WinGame()
     {
         gameObjectUI.SetActive(true);
     }
 
+    // the screen reload if lose
     void Restart()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

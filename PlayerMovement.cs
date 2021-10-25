@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float SidewaySpeed = 200f;
 
     // Update is called once per frame
+    // updata player movemnt with keyboard left right 
     void Update()
     {
         rb.AddForce(0, 0, MovementSpeed * Time.deltaTime);
